@@ -1,0 +1,281 @@
+# Korea EE Portal Scanner Configuration
+# Copy to portals.yml for broad Korean electrical/electronic engineering discovery.
+# Existing career-ops scanners remain unchanged; this config only changes the
+# target filters and the sources/handoff queries.
+
+scan_history:
+  recheck_after_days: 30
+
+# Keep the discovery window broad but reasonably fresh. Undated jobs still pass.
+max_posting_age_days: 45
+
+location_filter:
+  always_allow:
+    - "Korea"
+    - "South Korea"
+    - "대한민국"
+    - "한국"
+    - "서울"
+    - "경기"
+    - "수도권"
+    - "Remote"
+    - "재택"
+  allow:
+    - "Korea"
+    - "South Korea"
+    - "대한민국"
+    - "한국"
+    - "서울"
+    - "경기"
+    - "인천"
+    - "수도권"
+    - "대전"
+    - "세종"
+    - "천안"
+    - "아산"
+    - "평택"
+    - "화성"
+    - "용인"
+    - "수원"
+    - "청주"
+    - "구미"
+    - "울산"
+    - "부산"
+    - "광주"
+    - "전국"
+    - "Remote"
+    - "재택"
+  block: []
+
+trust_filter:
+  enabled: true
+  suspicious_domains:
+    - "bit.ly"
+    - "tinyurl.com"
+    - "t.co"
+    - "forms.gle"
+    - "goo.gl"
+    - "shorturl.at"
+    - "open.kakao.com"
+    - "docs.google.com/forms"
+
+# Do NOT skip intern/entry. Hjin asked for intern, regular, contract, and any
+# employment type to be collected so the agent can evaluate eligibility later.
+title_filter:
+  positive:
+    # Korean EE / ECE keywords
+    - "전기"
+    - "전기전자"
+    - "전자"
+    - "전력"
+    - "전력전자"
+    - "전기설비"
+    - "설비기술"
+    - "설비보전"
+    - "수배전"
+    - "보호계전"
+    - "회로"
+    - "회로설계"
+    - "PCB"
+    - "제어"
+    - "자동제어"
+    - "임베디드"
+    - "펌웨어"
+    - "반도체"
+    - "장비"
+    - "공정"
+    - "FA"
+    - "계측"
+    - "시험평가"
+    - "검증"
+    - "품질"
+    - "배터리"
+    - "BMS"
+    - "모터"
+    - "인버터"
+    - "전장"
+    - "차량제어"
+    - "통신"
+    - "신호처리"
+    - "센서"
+    - "EMC"
+    - "플랜트"
+    - "발전"
+    - "에너지"
+    - "전기공사"
+    # English equivalents used by multinational/company ATS postings
+    - "Electrical"
+    - "Electronics"
+    - "Power"
+    - "Power Electronics"
+    - "Circuit"
+    - "Hardware"
+    - "PCB"
+    - "Control"
+    - "Embedded"
+    - "Firmware"
+    - "Semiconductor"
+    - "Process Engineer"
+    - "Equipment Engineer"
+    - "Field Application"
+    - "Battery"
+    - "BMS"
+    - "Motor"
+    - "Inverter"
+    - "Vehicle Electronics"
+    - "EV"
+    - "Signal Processing"
+    - "Instrumentation"
+    - "Plant Electrical"
+    - "Facilities Electrical"
+  negative:
+    # Exclude clearly unrelated roles, but do not exclude intern/junior/contract.
+    - "간호"
+    - "영업관리"
+    - "매장"
+    - "CS"
+    - "고객상담"
+    - "마케팅"
+    - "디자인"
+    - "회계"
+    - "재무"
+    - "인사"
+    - "총무"
+    - "법무"
+    - "MD"
+    - "교사"
+    - "강사"
+    - "물류센터"
+    - "조리"
+    - "미용"
+    - "간호조무"
+  seniority_boost:
+    - "인턴"
+    - "채용연계형"
+    - "신입"
+    - "Junior"
+    - "Entry"
+    - "계약직"
+    - "정규직"
+    - "산학장학생"
+
+content_filter:
+  positive:
+    - "전기"
+    - "전자"
+    - "전기전자"
+    - "전력"
+    - "회로"
+    - "제어"
+    - "임베디드"
+    - "반도체"
+    - "배터리"
+    - "전장"
+    - "전기공학"
+    - "전자공학"
+    - "Electrical"
+    - "Electronics"
+    - "Power"
+    - "Circuit"
+    - "Control"
+    - "Embedded"
+    - "Semiconductor"
+    - "Battery"
+  negative: []
+
+search_queries:
+  - name: Saramin — 전기전자 전체
+    query: 'site:saramin.co.kr/zf_user/jobs "전기전자" (신입 OR 인턴 OR 계약직 OR 정규직 OR 채용연계형)'
+    enabled: true
+  - name: JobKorea — 전기전자 전체
+    query: 'site:jobkorea.co.kr/Recruit "전기전자" (신입 OR 인턴 OR 계약직 OR 정규직 OR 채용연계형)'
+    enabled: true
+  - name: Jasoseol — 전기전자
+    query: 'site:jasoseol.com/recruit "전기전자" OR "전기공학" OR "전자공학"'
+    enabled: true
+  - name: Linkareer — 전기공학 인턴/신입
+    query: 'site:linkareer.com/activity "전기공학" OR "전기전자" (인턴 OR 신입 OR 채용)'
+    enabled: true
+  - name: Catch — 전기전자 채용
+    query: 'site:catch.co.kr/NCS/RecruitInfoDetails "전기전자" OR "전기공학" OR "전자공학"'
+    enabled: true
+  - name: Wanted — Electrical Korea
+    query: 'site:wanted.co.kr/wd (Electrical OR 전기 OR 전자 OR 반도체 OR 배터리) Korea'
+    enabled: true
+  - name: LinkedIn Korea — Electrical Engineering
+    query: 'site:linkedin.com/jobs ("Electrical Engineer" OR "Electronics Engineer" OR "Power Electronics" OR Semiconductor OR Battery) Korea'
+    enabled: true
+  - name: Company pages — Korean EE new grad
+    query: '("전기전자" OR "전기공학" OR "전자공학") (신입 OR 인턴 OR 계약직 OR 정규직 OR 채용연계형) (채용 OR recruit)'
+    enabled: true
+
+# Broad Korean-market companies. Many Korean boards are not zero-token provider
+# compatible, so unsupported entries are intentionally marked `scan_method:
+# websearch`; scan.mjs will surface them as Agent/WebSearch handoff items for the
+# AI agent to investigate while preserving existing zero-token providers.
+tracked_companies:
+  - name: Samsung Careers
+    scan_method: websearch
+    scan_query: 'site:samsungcareers.com "전기전자" OR "회로" OR "반도체" OR "설비기술"'
+    careers_url: https://www.samsungcareers.com
+    enabled: true
+  - name: SK Careers
+    scan_method: websearch
+    scan_query: 'site:skcareers.com "전기" OR "전자" OR "반도체" OR "배터리" OR "전력"'
+    careers_url: https://www.skcareers.com
+    enabled: true
+  - name: LG Careers
+    scan_method: websearch
+    scan_query: 'site:careers.lg.com "전기" OR "전자" OR "회로" OR "전장" OR "배터리"'
+    careers_url: https://careers.lg.com
+    enabled: true
+  - name: Hyundai Motor Group Careers
+    scan_method: websearch
+    scan_query: 'site:talent.hyundai.com "전기" OR "전자" OR "전장" OR "배터리" OR "모터"'
+    careers_url: https://talent.hyundai.com
+    enabled: true
+  - name: Hyundai Mobis Careers
+    scan_method: websearch
+    scan_query: 'site:mobis.recruiter.co.kr "전기" OR "전자" OR "전장" OR "제어" OR "회로"'
+    careers_url: https://mobis.recruiter.co.kr
+    enabled: true
+  - name: Hanwha Careers
+    scan_method: websearch
+    scan_query: 'site:hanwhain.com "전기" OR "전자" OR "방산" OR "전력" OR "회로"'
+    careers_url: https://www.hanwhain.com
+    enabled: true
+  - name: POSCO Careers
+    scan_method: websearch
+    scan_query: 'site:recruit.posco.com "전기" OR "전자" OR "설비" OR "제어"'
+    careers_url: https://recruit.posco.com
+    enabled: true
+  - name: HD Hyundai Careers
+    scan_method: websearch
+    scan_query: 'site:recruit.hd.com "전기" OR "전자" OR "전장" OR "플랜트"'
+    careers_url: https://recruit.hd.com
+    enabled: true
+  - name: LS Careers
+    scan_method: websearch
+    scan_query: 'site:lscareer.com "전기" OR "전력" OR "전선" OR "전기전자"'
+    careers_url: https://www.lscareer.com
+    enabled: true
+  - name: Doosan Careers
+    scan_method: websearch
+    scan_query: 'site:career.doosan.com "전기" OR "전자" OR "플랜트" OR "제어"'
+    careers_url: https://career.doosan.com
+    enabled: true
+  - name: KEPCO and power affiliates
+    scan_method: websearch
+    scan_query: '(site:kepco.co.kr OR site:job.alio.go.kr) (전기 OR 전력 OR 전기공학) (신입 OR 인턴 OR 계약직 OR 채용)'
+    careers_url: https://www.kepco.co.kr
+    enabled: true
+
+job_boards:
+  - name: Amazon Jobs Korea EE
+    provider: amazon
+    careers_url: https://www.amazon.jobs
+    amazon:
+      keywords: ["Electrical", "Electronics", "Hardware", "Power", "Semiconductor", "Battery"]
+      country: "KR"
+      max_pages: 8
+    enabled: true

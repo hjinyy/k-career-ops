@@ -1,0 +1,87 @@
+# Korean Electrical Engineering Career-Ops profile
+# Copy to config/profile.yml for a Korea-focused EE job-search lane.
+
+candidate:
+  full_name: "Hjin"
+  email: ""
+  phone: ""
+  location: "Seoul, Korea"
+  linkedin: ""
+  portfolio_url: ""
+  github: "github.com/hjinyy"
+  photo: ""
+  photo_style: rounded
+
+target_roles:
+  primary:
+    - "전기전자 신입"
+    - "전기공학 인턴"
+    - "전력/전기설비 엔지니어"
+    - "반도체/배터리/전장 엔지니어"
+    - "제어/임베디드/회로 엔지니어"
+  archetypes:
+    - name: "전력·전기설비 엔지니어"
+      level: "인턴/신입/Junior"
+      fit: "primary"
+    - name: "반도체·장비·공정 엔지니어"
+      level: "인턴/신입/Junior"
+      fit: "primary"
+    - name: "배터리·전장·모터 제어 엔지니어"
+      level: "인턴/신입/Junior"
+      fit: "primary"
+    - name: "제어·임베디드·회로 설계 엔지니어"
+      level: "인턴/신입/Junior"
+      fit: "secondary"
+    - name: "플랜트·건설 전기 엔지니어"
+      level: "인턴/신입/Junior"
+      fit: "secondary"
+    - name: "통신·신호처리·계측 엔지니어"
+      level: "인턴/신입/Junior"
+      fit: "adjacent"
+
+narrative:
+  headline: "한양대학교 전기/전자공학 계열 4학년 1학기 학생"
+  exit_story: "전기공학 기반 직무에서 인턴, 신입, 계약직을 폭넓게 검토하되 지원자격 적합성을 먼저 확인한다."
+  superpowers:
+    - "전기전자공학 기초"
+    - "전력·제어·회로·반도체·배터리·전장 직무 적합성 판단"
+    - "공고 지원자격을 꼼꼼히 확인하는 지원 전략"
+  proof_points: []
+
+compensation:
+  target_range: "공고별 확인"
+  currency: "KRW"
+  minimum: "공고별 확인"
+  location_flexibility: "대한민국 근무 우선, 수도권/전국 사업장 공고 모두 검토"
+
+location:
+  country: "South Korea"
+  city: "Seoul"
+  timezone: "Asia/Seoul"
+  visa_status: "대한민국 내 취업 가능 여부는 후보자가 직접 확인 필요"
+  authorized_in: ["South Korea", "Korea", "대한민국", "한국"]
+  needs_sponsorship: false
+
+language:
+  output: ko
+
+# High-volume scouting is expected; use the balanced default unless a specific
+# evaluation deserves premium reasoning.
+spend_tier: standard
+
+# Keep the scan broad; the EE suitability and 4-1 eligibility gates happen in
+# evaluation, not by over-filtering at discovery time.
+auto_pdf_score_threshold: 4.0
+
+culture_screen:
+  require:
+    - "전기공학 또는 전기전자 전공이 지원 가능한 직무"
+    - "4학년 1학기 재학생, 인턴, 신입, 계약직 중 하나로 지원 가능성이 명확하거나 확인 가능"
+  deprioritize_if_absent: false
+
+cv:
+  output_format: "html"
+
+cover_letter:
+  notice_period_days: 0
+  primary_domain: "electrical and electronic engineering"

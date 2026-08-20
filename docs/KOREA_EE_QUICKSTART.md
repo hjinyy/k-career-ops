@@ -1,0 +1,65 @@
+# Korea EE Career-Ops Quickstart
+
+This fork can run the original career-ops pipeline while evaluating postings for a
+Korean electrical/electronic-engineering student.
+
+## What changes
+
+- Discovery is broad: internship, new-grad, full-time, contract, 채용연계형 인턴,
+  산학장학생, 연구보조, 현장실습, Junior/Entry are all allowed into the pipeline.
+- Evaluation is stricter: every posting is judged by **electrical-engineering
+  major fit** and **4학년 1학기 eligibility** before the normal career-ops score is
+  finalized.
+- Output is Korean-first and asks HR clarification questions when eligibility is
+  ambiguous instead of guessing.
+
+## Install the Korea EE lane
+
+```bash
+node setup-korea-ee.mjs
+```
+
+This copies tracked templates into the user layer:
+
+| Template | Installed as |
+|---|---|
+| `templates/cv.korea-ee.template.md` | `cv.md` |
+| `config/profile.korea-ee.example.yml` | `config/profile.yml` |
+| `templates/portals.korea-ee.example.yml` | `portals.yml` |
+| `modes/profile.korea-ee.template.md` | `modes/_profile.md` |
+| `modes/custom.korea-ee.template.md` | `modes/_custom.md` |
+
+Those installed files are intentionally gitignored by upstream career-ops because
+they contain user-specific targeting. Keep editing them locally after setup.
+
+Use `--force` only if you intentionally want to overwrite existing user-layer
+customizations:
+
+```bash
+node setup-korea-ee.mjs --force
+```
+
+## Run checks
+
+```bash
+node doctor.mjs --json
+node validate-portals.mjs --summary
+node scan.mjs --dry-run --quiet
+```
+
+If `scan.mjs` prints `Agent/WebSearch handoff`, those entries are expected for
+Korean job boards and company pages that do not expose a zero-token ATS API. Use
+those queries with your AI/web-search workflow, add confirmed posting URLs to
+`data/pipeline.md`, then run the normal evaluation pipeline.
+
+## Evaluation rubric overlay
+
+Each report should surface:
+
+- `전공 적합성:` ✅ 명확 / ⚠️ 가능성 있음 / ⛔ 부적합
+- `4-1 지원자격:` ✅ 가능 / ⚠️ 확인 필요 / ⛔ 불가
+- `고용형태:` 인턴 / 신입 / 정규직 / 계약직 / 채용연계형 / 산학장학생 / 기타 / 미상
+- `오늘 액션:` 지원 / 저장 / HR 확인 / 제외
+
+The existing A-G career-ops blocks remain intact; this overlay changes how fit is
+interpreted for Korean electrical-engineering postings.
