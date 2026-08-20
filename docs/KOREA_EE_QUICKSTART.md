@@ -9,8 +9,14 @@ Korean electrical/electronic-engineering student or graduate.
   산학장학생, 연구보조, 현장실습, Junior/Entry are all allowed into the pipeline.
 - Korean-board collection now includes local zero-token parsers for JobKorea,
   Saramin, Linkareer, Catch, and Jasoseol where their public listing pages expose
-  enough HTML/JSON. Company career pages that do not expose a stable public feed
-  still appear as `Agent/WebSearch handoff` items.
+  enough HTML/JSON.
+- Official Korean large/mid-cap company coverage includes Samsung, SK, LG,
+  Hyundai Motor Group/Mobis/AutoEver, Hanwha, POSCO, HD Hyundai, LS, Doosan,
+  Lotte, CJ, Hyosung, Kolon, KT/NAVER/Kakao/Coupang infrastructure, DB/LX/Wonik,
+  PSK, L&F, Hana Micron, EcoPro, HL, LIG Nex1, KAI, KCC, OCI, S-OIL, GS Energy,
+  and related EE-heavy pages. Company career pages that do not expose a stable
+  public feed still appear as `Agent/WebSearch handoff` items with site-specific
+  EE queries.
 - Evaluation is stricter: every posting is judged by **electrical-engineering
   major fit** and **broad student/graduate eligibility** before the normal career-ops
   score is finalized.

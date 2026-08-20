@@ -245,65 +245,225 @@ search_queries:
     query: '("전기전자" OR "전기공학" OR "전자공학") (신입 OR 인턴 OR 계약직 OR 정규직 OR 채용연계형) (채용 OR recruit)'
     enabled: true
 
-# Broad Korean-market companies. Many Korean boards are not zero-token provider
-# compatible, so unsupported entries are intentionally marked `scan_method:
-# websearch`; scan.mjs will surface them as Agent/WebSearch handoff items for the
-# AI agent to investigate while preserving existing zero-token providers.
+# Broad official Korean large/mid-cap company career pages for EE majors.
+# These entries intentionally use websearch handoff because Korean corporate
+# career pages rarely expose a stable zero-token ATS/API. The URLs are official
+# group/company career pages; scan_query narrows each site to EE-relevant roles.
 tracked_companies:
-  - name: Samsung Careers
+  - name: Samsung Group Careers
     scan_method: websearch
-    scan_query: 'site:samsungcareers.com "전기전자" OR "회로" OR "반도체" OR "설비기술"'
+    scan_query: 'site:samsungcareers.com ("전기전자" OR "회로" OR "반도체" OR "설비기술" OR "배터리" OR "전장") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://www.samsungcareers.com
     enabled: true
-  - name: SK Careers
+  - name: SK Group Careers
     scan_method: websearch
-    scan_query: 'site:skcareers.com "전기" OR "전자" OR "반도체" OR "배터리" OR "전력"'
+    scan_query: 'site:skcareers.com ("전기" OR "전자" OR "반도체" OR "배터리" OR "전력" OR "공정" OR "설비") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://www.skcareers.com
     enabled: true
-  - name: LG Careers
+  - name: LG Group Careers
     scan_method: websearch
-    scan_query: 'site:careers.lg.com "전기" OR "전자" OR "회로" OR "전장" OR "배터리"'
+    scan_query: 'site:careers.lg.com ("전기" OR "전자" OR "회로" OR "전장" OR "배터리" OR "디스플레이") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://careers.lg.com
     enabled: true
   - name: Hyundai Motor Group Careers
     scan_method: websearch
-    scan_query: 'site:talent.hyundai.com "전기" OR "전자" OR "전장" OR "배터리" OR "모터"'
+    scan_query: 'site:talent.hyundai.com ("전기" OR "전자" OR "전장" OR "배터리" OR "모터" OR "제어" OR "로보틱스") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://talent.hyundai.com
     enabled: true
   - name: Hyundai Mobis Careers
     scan_method: websearch
-    scan_query: 'site:mobis.recruiter.co.kr "전기" OR "전자" OR "전장" OR "제어" OR "회로"'
+    scan_query: 'site:mobis.recruiter.co.kr ("전기" OR "전자" OR "전장" OR "제어" OR "회로" OR "모빌리티") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://mobis.recruiter.co.kr
     enabled: true
-  - name: Hanwha Careers
+  - name: Hanwha Group Careers
     scan_method: websearch
-    scan_query: 'site:hanwhain.com "전기" OR "전자" OR "방산" OR "전력" OR "회로"'
+    scan_query: 'site:hanwhain.com ("전기" OR "전자" OR "방산" OR "전력" OR "회로" OR "항공" OR "우주") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://www.hanwhain.com
     enabled: true
-  - name: POSCO Careers
+  - name: POSCO Group Careers
     scan_method: websearch
-    scan_query: 'site:recruit.posco.com "전기" OR "전자" OR "설비" OR "제어"'
+    scan_query: 'site:recruit.posco.com ("전기" OR "전자" OR "설비" OR "제어" OR "이차전지" OR "소재" OR "플랜트") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://recruit.posco.com
     enabled: true
-  - name: HD Hyundai Careers
+  - name: HD Hyundai Group Careers
     scan_method: websearch
-    scan_query: 'site:recruit.hd.com "전기" OR "전자" OR "전장" OR "플랜트"'
+    scan_query: 'site:recruit.hd.com ("전기" OR "전자" OR "전장" OR "플랜트" OR "조선" OR "전력") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://recruit.hd.com
     enabled: true
-  - name: LS Careers
+  - name: LS Group Careers
     scan_method: websearch
-    scan_query: 'site:lscareer.com "전기" OR "전력" OR "전선" OR "전기전자"'
+    scan_query: 'site:lscareer.com ("전기" OR "전력" OR "전선" OR "전기전자" OR "자동화") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://www.lscareer.com
     enabled: true
-  - name: Doosan Careers
+  - name: Doosan Group Careers
     scan_method: websearch
-    scan_query: 'site:career.doosan.com "전기" OR "전자" OR "플랜트" OR "제어"'
+    scan_query: 'site:career.doosan.com ("전기" OR "전자" OR "플랜트" OR "제어" OR "발전" OR "로보틱스") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://career.doosan.com
     enabled: true
-  - name: KEPCO and power affiliates
+  - name: Lotte Group Careers
     scan_method: websearch
-    scan_query: '(site:kepco.co.kr OR site:job.alio.go.kr) (전기 OR 전력 OR 전기공학) (신입 OR 인턴 OR 계약직 OR 채용)'
-    careers_url: https://www.kepco.co.kr
+    scan_query: 'site:recruit.lotte.co.kr ("전기" OR "전자" OR "설비" OR "에너지" OR "생산기술" OR "자동화") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://recruit.lotte.co.kr
+    enabled: true
+  - name: CJ Group Careers
+    scan_method: websearch
+    scan_query: 'site:recruit.cj.net ("전기" OR "전자" OR "설비" OR "자동화" OR "생산기술") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://recruit.cj.net
+    enabled: true
+  - name: Hyosung Group Careers
+    scan_method: websearch
+    scan_query: 'site:hyosung.recruiter.co.kr ("전기" OR "전력" OR "중공업" OR "전기전자" OR "설비") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://hyosung.recruiter.co.kr
+    enabled: true
+  - name: Kolon Group Careers
+    scan_method: websearch
+    scan_query: 'site:dream.kolon.com ("전기" OR "전자" OR "설비" OR "소재" OR "자동화") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://dream.kolon.com
+    enabled: true
+  - name: KT Careers
+    scan_method: websearch
+    scan_query: 'site:recruit.kt.com ("전기" OR "전자" OR "통신" OR "네트워크" OR "인프라") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://recruit.kt.com
+    enabled: true
+  - name: NAVER Careers
+    scan_method: websearch
+    scan_query: 'site:recruit.navercorp.com ("전기" OR "전자" OR "데이터센터" OR "인프라" OR "네트워크" OR "하드웨어") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://recruit.navercorp.com
+    enabled: true
+  - name: Kakao Careers
+    scan_method: websearch
+    scan_query: 'site:careers.kakao.com ("전기" OR "전자" OR "데이터센터" OR "인프라" OR "네트워크" OR "하드웨어") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://careers.kakao.com
+    enabled: true
+  - name: Coupang Careers
+    scan_method: websearch
+    scan_query: 'site:coupang.jobs ("전기" OR "전자" OR "물류" OR "자동화" OR "설비" OR "로보틱스") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://www.coupang.jobs
+    enabled: true
+  - name: DB Group Careers
+    scan_method: websearch
+    scan_query: 'site:dbgroup.recruiter.co.kr ("전기" OR "전자" OR "반도체" OR "설비" OR "회로") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://dbgroup.recruiter.co.kr
+    enabled: true
+  - name: DB HiTek Careers
+    scan_method: websearch
+    scan_query: 'site:dbhitek.com ("전기" OR "전자" OR "반도체" OR "공정" OR "장비" OR "회로") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://www.dbhitek.com/kr/recruit/notice
+    enabled: true
+  - name: LX Semicon Careers
+    scan_method: websearch
+    scan_query: 'site:lxsemicon.recruiter.co.kr ("전기" OR "전자" OR "회로" OR "반도체" OR "Analog" OR "Digital") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://lxsemicon.recruiter.co.kr
+    enabled: true
+  - name: LX Careers
+    scan_method: websearch
+    scan_query: 'site:apply.lxcareers.com ("전기" OR "전자" OR "반도체" OR "배터리" OR "소재") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://apply.lxcareers.com
+    enabled: true
+  - name: Wonik Careers
+    scan_method: websearch
+    scan_query: 'site:wonik.recruiter.co.kr ("전기" OR "전자" OR "반도체" OR "장비" OR "공정" OR "설비") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://wonik.recruiter.co.kr
+    enabled: true
+  - name: PSK Careers
+    scan_method: websearch
+    scan_query: 'site:psk.recruiter.co.kr ("전기" OR "전자" OR "반도체" OR "장비" OR "공정" OR "제어") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://psk.recruiter.co.kr
+    enabled: true
+  - name: L&F Careers
+    scan_method: websearch
+    scan_query: 'site:landf.recruiter.co.kr ("전기" OR "전자" OR "배터리" OR "이차전지" OR "설비") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://landf.recruiter.co.kr
+    enabled: true
+  - name: Hana Micron Careers
+    scan_method: websearch
+    scan_query: 'site:hanamicron.recruiter.co.kr ("전기" OR "전자" OR "반도체" OR "패키징" OR "설비") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://hanamicron.recruiter.co.kr
+    enabled: true
+  - name: EcoPro Careers
+    scan_method: websearch
+    scan_query: 'site:ecopro.recruiter.co.kr ("전기" OR "전자" OR "배터리" OR "이차전지" OR "소재" OR "설비") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://ecopro.recruiter.co.kr
+    enabled: true
+  - name: Koh Young Careers
+    scan_method: websearch
+    scan_query: 'site:kohyoung.com ("전기" OR "전자" OR "장비" OR "제어" OR "로보틱스" OR "검사") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://kohyoung.com/ko/careers
+    enabled: true
+  - name: Amkor Korea Careers
+    scan_method: websearch
+    scan_query: 'site:amkor.com ("전기" OR "전자" OR "반도체" OR "패키징" OR "설비") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://amkor.com/kr/careers
+    enabled: true
+  - name: HL Group Careers
+    scan_method: websearch
+    scan_query: 'site:hlcompany.recruiter.co.kr ("전기" OR "전자" OR "전장" OR "모빌리티" OR "제어") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://hlcompany.recruiter.co.kr
+    enabled: true
+  - name: HL Mando Careers
+    scan_method: websearch
+    scan_query: 'site:hlmando.com ("전기" OR "전자" OR "전장" OR "제어" OR "모터") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://www.hlmando.com/ko/career/recruitment
+    enabled: true
+  - name: HL Klemove Careers
+    scan_method: websearch
+    scan_query: 'site:hlklemove.com ("전기" OR "전자" OR "전장" OR "자율주행" OR "센서" OR "제어") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://www.hlklemove.com/ko/career/recruit
+    enabled: true
+  - name: Hyundai AutoEver Careers
+    scan_method: websearch
+    scan_query: 'site:hyundai-autoever.com ("전기" OR "전자" OR "차량" OR "SW" OR "임베디드" OR "인프라") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://www.hyundai-autoever.com/recruit/recruitment
+    enabled: true
+  - name: LIG Nex1 Careers
+    scan_method: websearch
+    scan_query: 'site:lignex1.recruiter.co.kr ("전기" OR "전자" OR "방산" OR "레이더" OR "유도무기" OR "회로") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://lignex1.recruiter.co.kr
+    enabled: true
+  - name: KAI Careers
+    scan_method: websearch
+    scan_query: 'site:koreaaero.com ("전기" OR "전자" OR "항공" OR "우주" OR "제어" OR "항전") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://www.koreaaero.com/KO/Recruit/RecruitNotice.aspx
+    enabled: true
+  - name: Hyundai Elevator Careers
+    scan_method: websearch
+    scan_query: 'site:hyundaielevator.co.kr ("전기" OR "전자" OR "제어" OR "모터" OR "설비") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://www.hyundaielevator.co.kr/ko/recruit/recruitment
+    enabled: true
+  - name: KCC Careers
+    scan_method: websearch
+    scan_query: 'site:kcc.recruiter.co.kr ("전기" OR "전자" OR "설비" OR "생산기술" OR "소재") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://kcc.recruiter.co.kr
+    enabled: true
+  - name: OCI Careers
+    scan_method: websearch
+    scan_query: 'site:oci.recruiter.co.kr ("전기" OR "전자" OR "설비" OR "화학" OR "플랜트") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://oci.recruiter.co.kr
+    enabled: true
+  - name: S-OIL Careers
+    scan_method: websearch
+    scan_query: 'site:s-oil.recruiter.co.kr ("전기" OR "전자" OR "설비" OR "계장" OR "플랜트") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://s-oil.recruiter.co.kr
+    enabled: true
+  - name: GS Energy Careers
+    scan_method: websearch
+    scan_query: 'site:gsenergy.recruiter.co.kr ("전기" OR "전력" OR "에너지" OR "설비" OR "배터리") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://gsenergy.recruiter.co.kr
+    enabled: true
+  - name: SK Siltron Careers
+    scan_method: websearch
+    scan_query: 'site:sksiltron.recruiter.co.kr ("전기" OR "전자" OR "반도체" OR "웨이퍼" OR "설비") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://sksiltron.recruiter.co.kr
+    enabled: true
+  - name: Celltrion Careers
+    scan_method: websearch
+    scan_query: 'site:celltrion.recruiter.co.kr ("전기" OR "전자" OR "설비" OR "자동화" OR "계장") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://celltrion.recruiter.co.kr
+    enabled: true
+  - name: Daewoong Careers
+    scan_method: websearch
+    scan_query: 'site:daewoong.recruiter.co.kr ("전기" OR "전자" OR "설비" OR "자동화" OR "생산기술") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
+    careers_url: https://daewoong.recruiter.co.kr
     enabled: true
 
 job_boards:
