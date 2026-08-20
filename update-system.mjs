@@ -205,6 +205,7 @@ const SYSTEM_PATHS = [
   'prepare-application.mjs',
   'application-artifacts.mjs',
   'providers/',
+  'scripts/parsers/korea-job-board.mjs',
   'seeds/',
   'tests/',
   'user-agent.mjs',

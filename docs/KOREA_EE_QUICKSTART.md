@@ -7,6 +7,10 @@ Korean electrical/electronic-engineering student or graduate.
 
 - Discovery is broad: internship, new-grad, full-time, contract, 채용연계형 인턴,
   산학장학생, 연구보조, 현장실습, Junior/Entry are all allowed into the pipeline.
+- Korean-board collection now includes local zero-token parsers for JobKorea,
+  Saramin, Linkareer, Catch, and Jasoseol where their public listing pages expose
+  enough HTML/JSON. Company career pages that do not expose a stable public feed
+  still appear as `Agent/WebSearch handoff` items.
 - Evaluation is stricter: every posting is judged by **electrical-engineering
   major fit** and **broad student/graduate eligibility** before the normal career-ops
   score is finalized.
@@ -48,8 +52,8 @@ node scan.mjs --dry-run --quiet
 ```
 
 If `scan.mjs` prints `Agent/WebSearch handoff`, those entries are expected for
-Korean job boards and company pages that do not expose a zero-token ATS API. Use
-those queries with your AI/web-search workflow, add confirmed posting URLs to
+company career pages that do not expose a zero-token ATS/API feed. Use those
+queries with your AI/web-search workflow, add confirmed posting URLs to
 `data/pipeline.md`, then run the normal evaluation pipeline.
 
 ## Evaluation rubric overlay

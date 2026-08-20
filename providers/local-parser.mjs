@@ -147,12 +147,18 @@ function normalizeParserJob(job, entry) {
   );
   if (!title || !url) return null;
 
-  return {
+  /** @type {Record<string, any>} */
+  const normalized = {
     title,
     url,
     company: String(job.company || entry.name || '').trim(),
     location: normalizeLocation(job.location || job.locations),
   };
+  const description = String(job.description || job.summary || job.content || '').trim();
+  if (description) normalized.description = description;
+  const postedAt = Number(job.postedAt || job.posted_at || job.date || 0);
+  if (Number.isFinite(postedAt) && postedAt > 0) normalized.postedAt = postedAt;
+  return normalized;
 }
 
 async function runLocalParser(entry) {
@@ -184,7 +190,7 @@ async function runLocalParser(entry) {
 
   return rawJobs
     .map(job => normalizeParserJob(job, entry))
-    .filter(Boolean);
+    .filter((job) => Boolean(job));
 }
 
 /** @type {Provider} */

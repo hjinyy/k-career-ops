@@ -132,9 +132,21 @@ title_filter:
     # Exclude clearly unrelated roles, but do not exclude intern/junior/contract.
     - "간호"
     - "영업관리"
+    - "영업지원"
+    - "사업 영업"
+    - "구매 담당"
+    - "자재구매"
+    - "인허가 사무직"
+    - "환경관리"
+    - "경노무"
+    - "미화"
+    - "사무직원"
+    - "사무보조"
     - "매장"
     - "CS"
     - "고객상담"
+    - "고객센터"
+    - "상담사"
     - "마케팅"
     - "디자인"
     - "회계"
@@ -142,6 +154,15 @@ title_filter:
     - "인사"
     - "총무"
     - "법무"
+    - "공인노무사"
+    - "IR"
+    - "외환관리"
+    - "자금조달"
+    - "재무회계"
+    - "학과사무실"
+    - "행정직원"
+    - "운영교수"
+    - "교육조교"
     - "MD"
     - "교사"
     - "강사"
@@ -181,7 +202,22 @@ content_filter:
     - "Embedded"
     - "Semiconductor"
     - "Battery"
-  negative: []
+  negative:
+    - "생활가전 판매"
+    - "전기자전거 판매"
+    - "쇼핑몰"
+    - "고객상담"
+    - "사무보조"
+  by_title_keyword:
+    "장비":
+      positive: ["전기", "전자", "반도체", "제어", "PLC", "계측", "설비", "공정", "FA", "Equipment", "Semiconductor"]
+      negative: ["영업", "판매", "렌탈", "구매", "생활용품"]
+    "품질":
+      positive: ["전기", "전자", "반도체", "배터리", "전장", "회로", "계측", "검사", "시험", "QA", "QC"]
+      negative: ["식품", "의류", "화장품", "고객", "콜센터"]
+    "검증":
+      positive: ["전기", "전자", "회로", "제어", "임베디드", "펌웨어", "배터리", "BMS", "전장", "시험"]
+      negative: ["문서", "콘텐츠", "광고", "마케팅"]
 
 search_queries:
   - name: Saramin — 전기전자 전체
@@ -271,6 +307,66 @@ tracked_companies:
     enabled: true
 
 job_boards:
+  - name: JobKorea Korea EE
+    scan_method: local_parser
+    careers_url: https://www.jobkorea.co.kr/Search/?stext=%EC%A0%84%EA%B8%B0%EC%A0%84%EC%9E%90
+    parser:
+      command: node
+      script: scripts/parsers/korea-job-board.mjs
+      args: ["--source", "jobkorea", "--max", "80"]
+      format: jobs-json-v1
+      timeout_ms: 120000
+      max_buffer_bytes: 4000000
+    enabled: true
+
+  - name: Saramin Korea EE
+    scan_method: local_parser
+    careers_url: https://www.saramin.co.kr/zf_user/search/recruit?searchword=%EC%A0%84%EA%B8%B0%EC%A0%84%EC%9E%90
+    parser:
+      command: node
+      script: scripts/parsers/korea-job-board.mjs
+      args: ["--source", "saramin", "--max", "80"]
+      format: jobs-json-v1
+      timeout_ms: 120000
+      max_buffer_bytes: 4000000
+    enabled: true
+
+  - name: Linkareer Korea EE
+    scan_method: local_parser
+    careers_url: https://linkareer.com/list/recruit?filterBy_interestIDs=11
+    parser:
+      command: node
+      script: scripts/parsers/korea-job-board.mjs
+      args: ["--source", "linkareer", "--max", "80"]
+      format: jobs-json-v1
+      timeout_ms: 120000
+      max_buffer_bytes: 4000000
+    enabled: true
+
+  - name: Catch Korea EE
+    scan_method: local_parser
+    careers_url: https://www.catch.co.kr/NCS/RecruitSearch
+    parser:
+      command: node
+      script: scripts/parsers/korea-job-board.mjs
+      args: ["--source", "catch", "--max", "80"]
+      format: jobs-json-v1
+      timeout_ms: 120000
+      max_buffer_bytes: 4000000
+    enabled: true
+
+  - name: Jasoseol Korea EE
+    scan_method: local_parser
+    careers_url: https://jasoseol.com/recruit
+    parser:
+      command: node
+      script: scripts/parsers/korea-job-board.mjs
+      args: ["--source", "jasoseol", "--max", "80"]
+      format: jobs-json-v1
+      timeout_ms: 120000
+      max_buffer_bytes: 4000000
+    enabled: true
+
   - name: Amazon Jobs Korea EE
     provider: amazon
     careers_url: https://www.amazon.jobs
