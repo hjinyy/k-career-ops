@@ -59,6 +59,18 @@ Do **not** filter out roles only because they are intern, 신입, 정규직, 계
 채용연계형, 산학장학생, 연구보조, 현장실습, or Junior/Entry. The evaluation should
 score them by EE fit, candidate scope, and requirement match — not by employment type alone.
 
+Prioritize early-career outcomes in ranking:
+
+1. Highest priority: 인턴, 채용연계형 인턴, 신입, Junior/Entry, 경력무관, 산학장학생,
+   연구보조, 현장실습, and roles explicitly open to 재학생/졸업예정자/기졸업자.
+2. Medium priority: 정규직/계약직 with no hard years-of-experience requirement or with
+   wording such as "신입/경력".
+3. Lower priority: 경력직 with clear 필수 연차. Keep it only if the EE fit is strong, but
+   mark `오늘 액션: 저장` or `제외` unless Hjin can plausibly satisfy the year requirement.
+
+Exclude or strongly down-rank non-engineering keyword matches such as 영업, 구매, 공무,
+단순 조립/생산직, 사무/행정, 조교/교수, 고객상담, 마케팅, 회계/재무, 인사/총무, 법무.
+
 ### 4) Korean-market output
 
 Reports, tracker notes, and action summaries should be in Korean polite speech.

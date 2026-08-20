@@ -18,7 +18,7 @@ const DEFAULT_KEYWORDS = [
   '반도체 장비', '배터리 BMS', '전장', '플랜트 전기',
 ];
 
-const SOURCES = new Set(['jobkorea', 'saramin', 'linkareer', 'catch', 'jasoseol']);
+const SOURCES = new Set(['jobkorea', 'saramin', 'linkareer', 'catch', 'jasoseol', 'recruiter']);
 
 function argValue(name, fallback = null) {
   const idx = process.argv.indexOf(name);
@@ -94,8 +94,18 @@ function titleLooksUseful(text) {
 function isRelevantKoreaEe(job) {
   const text = `${job.title || ''} ${job.description || ''}`;
   const positive = /전기전자|전기공학|전자공학|전력전자|전력|전기설비|수배전|보호계전|회로|PCB|제어|임베디드|펌웨어|반도체|계측|PLC|FA|배터리|BMS|모터|인버터|전장|차량제어|통신|신호처리|센서|EMC|플랜트 전기|전기시공|Electrical|Electronics|Power Electronics|Circuit|Hardware|Control|Embedded|Firmware|Semiconductor|Battery|Instrumentation/i;
-  const negative = /마케팅|회계|재무|인사|총무|법무|공인노무사|IR|외환관리|자금조달|재무회계|학과사무실|행정직원|운영교수|교육조교|고객상담|고객센터|상담사|콜센터|영업관리|영업지원|사업 영업|구매 담당|자재구매|인허가 사무직|환경관리|경노무|미화|사무직원|사무보조|매장|조리|미용|간호|생활용품|화장품|의류|식품|쇼핑몰/i;
+  const negative = /마케팅|회계|재무|인사|총무|법무|공인노무사|IR|외환관리|자금조달|재무회계|학과사무실|행정직원|운영교수|교육조교|실습조교|고객상담|고객센터|상담사|콜센터|영업관리|영업지원|국내영업|해외영업|장비영업|전장영업|영업팀|영업,?구매|사업 영업|구매 담당|구매팀|자재구매|인허가|공무 업무|공무\b|환경관리|경노무|미화|사무직원|사무보조|조립 작업자|제품 조립|단순 조립|전장배선 조립|조립원|생산직|품질관리\(QA\)|역검|이관용|매장|조리|미용|간호|생활용품|화장품|의류|식품|쇼핑몰/i;
   return positive.test(text) && !negative.test(`${job.title || ''}`);
+}
+
+function priorityScore(job) {
+  const text = `${job.title || ''} ${job.description || ''}`;
+  let score = 0;
+  if (/신입|인턴|채용연계|Junior|Entry|경력무관|무관|산학장학생|연구보조|현장실습/i.test(text)) score += 100;
+  if (/전기전자|전기공학|전력전자|회로|PCB|제어|임베디드|펌웨어|반도체|배터리|BMS|전장|Electrical|Electronics|Hardware|Embedded|Firmware|Semiconductor|Battery/i.test(text)) score += 40;
+  if (/경력\s*\d+|\d+\s*년|경력직|팀장|리더|책임|수석|Senior/i.test(text) && !/신입\s*[/·, ]\s*경력|신입.*경력|경력무관|무관/i.test(text)) score -= 60;
+  if (/영업|구매|공무|조립|생산직|조교|교수|사무|행정|상담/i.test(job.title || '')) score -= 100;
+  return score;
 }
 
 function nearby(html, index, span = 1200) {
@@ -234,6 +244,81 @@ async function parseJasoseol(keywords) {
   return out;
 }
 
+function toEpochMsFromMidasDate(value) {
+  if (!value || typeof value !== 'object') return undefined;
+  const t = Number(value.time);
+  return Number.isFinite(t) && t > 0 ? t : undefined;
+}
+
+async function fetchRecruiterJson(baseUrl, pageIndex = 1, keyword = '') {
+  const base = new URL(baseUrl);
+  const endpoint = new URL('/app/jobnotice/list.json', base);
+  const body = new URLSearchParams({
+    pageIndex: String(pageIndex),
+    pageSize: '100',
+    recruitClassSn: '',
+    recruitClassName: '',
+    jobnoticeStateCode: '',
+    searchByNameOnly: 'true',
+    keyword,
+    systemKindCode: 'MRS2',
+  });
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 15_000);
+  try {
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      signal: controller.signal,
+      headers: {
+        'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 career-ops-korea-ee/1.0',
+        'accept-language': 'ko-KR,ko;q=0.9,en;q=0.7',
+        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'x-requested-with': 'XMLHttpRequest',
+        referer: new URL('/app/jobnotice/list?systemKindCode=MRS2', base).href,
+      },
+      body,
+    });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+async function parseRecruiter(keywords) {
+  const rawUrl = argValue('--url') || argValue('--careers-url') || 'https://wonik.recruiter.co.kr';
+  const base = new URL(rawUrl).origin;
+  const out = new Map();
+  const searchTerms = ['', ...keywords];
+  for (const keyword of searchTerms) {
+    const first = await fetchRecruiterJson(base, 1, keyword);
+    const totalPages = Math.min(Number(first?.pageUtil?.lastPage || 1) || 1, keyword ? 2 : 4);
+    for (let page = 1; page <= totalPages; page++) {
+      const data = page === 1 ? first : await fetchRecruiterJson(base, page, keyword);
+      const list = Array.isArray(data?.list) ? data.list : [];
+      for (const obj of list) {
+        const sn = obj.jobnoticeSn;
+        const system = obj.systemKindCode || 'MRS2';
+        const className = cleanText(obj.recruitClassName || '');
+        const hostCompany = new URL(base).hostname.replace(/\.recruiter\.co\.kr$/i, '');
+        const company = /^(수시|상시|경력|신입|인턴|특별채용|일반채용)$/i.test(className) ? hostCompany : (className || hostCompany);
+        addJob(out, {
+          title: obj.jobnoticeName,
+          url: sn ? new URL(`/app/jobnotice/view?systemKindCode=${encodeURIComponent(system)}&jobnoticeSn=${encodeURIComponent(sn)}`, base).href : base,
+          company,
+          location: obj.workAreaName || obj.workPlaceName || '',
+          description: [company, obj.recruitTypeName, obj.receiptState, obj.jobnoticeName].filter(Boolean).join(' '),
+          postedAt: toEpochMsFromMidasDate(obj.applyStartDate),
+          source: 'Recruiter',
+        });
+      }
+    }
+  }
+  return out;
+}
+
 const source = argValue('--source', '').toLowerCase();
 const max = Number(argValue('--max', '80')) || 80;
 const keywords = parseKeywords();
@@ -242,10 +327,11 @@ if (!SOURCES.has(source)) {
   process.exit(2);
 }
 
-const parsers = { jobkorea: parseJobKorea, saramin: parseSaramin, linkareer: parseLinkareer, catch: parseCatch, jasoseol: parseJasoseol };
+const parsers = { jobkorea: parseJobKorea, saramin: parseSaramin, linkareer: parseLinkareer, catch: parseCatch, jasoseol: parseJasoseol, recruiter: parseRecruiter };
 const map = await parsers[source](keywords);
 const jobs = [...map.values()]
   .filter(j => j.title && j.url)
   .filter(isRelevantKoreaEe)
+  .sort((a, b) => priorityScore(b) - priorityScore(a) || String(a.title).localeCompare(String(b.title), 'ko'))
   .slice(0, max);
 console.log(JSON.stringify(jobs, null, 2));

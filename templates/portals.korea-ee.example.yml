@@ -135,11 +135,30 @@ title_filter:
     - "영업지원"
     - "사업 영업"
     - "구매 담당"
+    - "구매팀"
     - "자재구매"
+    - "국내영업"
+    - "해외영업"
+    - "장비영업"
+    - "전장영업"
+    - "영업팀"
+    - "영업,구매"
+    - "인허가"
     - "인허가 사무직"
+    - "공무 업무"
+    - "공무"
     - "환경관리"
     - "경노무"
     - "미화"
+    - "조립 작업자"
+    - "제품 조립"
+    - "단순 조립"
+    - "전장배선 조립"
+    - "조립원"
+    - "생산직"
+    - "품질관리(QA)"
+    - "역검"
+    - "이관용"
     - "사무직원"
     - "사무보조"
     - "매장"
@@ -163,6 +182,7 @@ title_filter:
     - "행정직원"
     - "운영교수"
     - "교육조교"
+    - "실습조교"
     - "MD"
     - "교사"
     - "강사"
@@ -208,6 +228,13 @@ content_filter:
     - "쇼핑몰"
     - "고객상담"
     - "사무보조"
+    - "영업"
+    - "구매"
+    - "공무"
+    - "조립"
+    - "생산직"
+    - "실습조교"
+    - "교육조교"
   by_title_keyword:
     "장비":
       positive: ["전기", "전자", "반도체", "제어", "PLC", "계측", "설비", "공정", "FA", "Equipment", "Semiconductor"]
@@ -271,7 +298,14 @@ tracked_companies:
     careers_url: https://talent.hyundai.com
     enabled: true
   - name: Hyundai Mobis Careers
-    scan_method: websearch
+    scan_method: local_parser
+    parser:
+      command: node
+      script: scripts/parsers/korea-job-board.mjs
+      args: ["--source", "recruiter", "--url", "https://mobis.recruiter.co.kr", "--max", "80"]
+      format: jobs-json-v1
+      timeout_ms: 120000
+      max_buffer_bytes: 4000000
     scan_query: 'site:mobis.recruiter.co.kr ("전기" OR "전자" OR "전장" OR "제어" OR "회로" OR "모빌리티") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://mobis.recruiter.co.kr
     enabled: true
@@ -311,7 +345,14 @@ tracked_companies:
     careers_url: https://recruit.cj.net
     enabled: true
   - name: Hyosung Group Careers
-    scan_method: websearch
+    scan_method: local_parser
+    parser:
+      command: node
+      script: scripts/parsers/korea-job-board.mjs
+      args: ["--source", "recruiter", "--url", "https://hyosung.recruiter.co.kr", "--max", "80"]
+      format: jobs-json-v1
+      timeout_ms: 120000
+      max_buffer_bytes: 4000000
     scan_query: 'site:hyosung.recruiter.co.kr ("전기" OR "전력" OR "중공업" OR "전기전자" OR "설비") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://hyosung.recruiter.co.kr
     enabled: true
@@ -341,7 +382,14 @@ tracked_companies:
     careers_url: https://www.coupang.jobs
     enabled: true
   - name: DB Group Careers
-    scan_method: websearch
+    scan_method: local_parser
+    parser:
+      command: node
+      script: scripts/parsers/korea-job-board.mjs
+      args: ["--source", "recruiter", "--url", "https://dbgroup.recruiter.co.kr", "--max", "80"]
+      format: jobs-json-v1
+      timeout_ms: 120000
+      max_buffer_bytes: 4000000
     scan_query: 'site:dbgroup.recruiter.co.kr ("전기" OR "전자" OR "반도체" OR "설비" OR "회로") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://dbgroup.recruiter.co.kr
     enabled: true
@@ -361,22 +409,50 @@ tracked_companies:
     careers_url: https://apply.lxcareers.com
     enabled: true
   - name: Wonik Careers
-    scan_method: websearch
+    scan_method: local_parser
+    parser:
+      command: node
+      script: scripts/parsers/korea-job-board.mjs
+      args: ["--source", "recruiter", "--url", "https://wonik.recruiter.co.kr", "--max", "80"]
+      format: jobs-json-v1
+      timeout_ms: 120000
+      max_buffer_bytes: 4000000
     scan_query: 'site:wonik.recruiter.co.kr ("전기" OR "전자" OR "반도체" OR "장비" OR "공정" OR "설비") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://wonik.recruiter.co.kr
     enabled: true
   - name: PSK Careers
-    scan_method: websearch
+    scan_method: local_parser
+    parser:
+      command: node
+      script: scripts/parsers/korea-job-board.mjs
+      args: ["--source", "recruiter", "--url", "https://psk.recruiter.co.kr", "--max", "80"]
+      format: jobs-json-v1
+      timeout_ms: 120000
+      max_buffer_bytes: 4000000
     scan_query: 'site:psk.recruiter.co.kr ("전기" OR "전자" OR "반도체" OR "장비" OR "공정" OR "제어") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://psk.recruiter.co.kr
     enabled: true
   - name: L&F Careers
-    scan_method: websearch
+    scan_method: local_parser
+    parser:
+      command: node
+      script: scripts/parsers/korea-job-board.mjs
+      args: ["--source", "recruiter", "--url", "https://landf.recruiter.co.kr", "--max", "80"]
+      format: jobs-json-v1
+      timeout_ms: 120000
+      max_buffer_bytes: 4000000
     scan_query: 'site:landf.recruiter.co.kr ("전기" OR "전자" OR "배터리" OR "이차전지" OR "설비") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://landf.recruiter.co.kr
     enabled: true
   - name: Hana Micron Careers
-    scan_method: websearch
+    scan_method: local_parser
+    parser:
+      command: node
+      script: scripts/parsers/korea-job-board.mjs
+      args: ["--source", "recruiter", "--url", "https://hanamicron.recruiter.co.kr", "--max", "80"]
+      format: jobs-json-v1
+      timeout_ms: 120000
+      max_buffer_bytes: 4000000
     scan_query: 'site:hanamicron.recruiter.co.kr ("전기" OR "전자" OR "반도체" OR "패키징" OR "설비") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://hanamicron.recruiter.co.kr
     enabled: true
@@ -396,7 +472,14 @@ tracked_companies:
     careers_url: https://amkor.com/kr/careers
     enabled: true
   - name: HL Group Careers
-    scan_method: websearch
+    scan_method: local_parser
+    parser:
+      command: node
+      script: scripts/parsers/korea-job-board.mjs
+      args: ["--source", "recruiter", "--url", "https://hlcompany.recruiter.co.kr", "--max", "80"]
+      format: jobs-json-v1
+      timeout_ms: 120000
+      max_buffer_bytes: 4000000
     scan_query: 'site:hlcompany.recruiter.co.kr ("전기" OR "전자" OR "전장" OR "모빌리티" OR "제어") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://hlcompany.recruiter.co.kr
     enabled: true
@@ -431,37 +514,86 @@ tracked_companies:
     careers_url: https://www.hyundaielevator.co.kr/ko/recruit/recruitment
     enabled: true
   - name: KCC Careers
-    scan_method: websearch
+    scan_method: local_parser
+    parser:
+      command: node
+      script: scripts/parsers/korea-job-board.mjs
+      args: ["--source", "recruiter", "--url", "https://kcc.recruiter.co.kr", "--max", "80"]
+      format: jobs-json-v1
+      timeout_ms: 120000
+      max_buffer_bytes: 4000000
     scan_query: 'site:kcc.recruiter.co.kr ("전기" OR "전자" OR "설비" OR "생산기술" OR "소재") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://kcc.recruiter.co.kr
     enabled: true
   - name: OCI Careers
-    scan_method: websearch
+    scan_method: local_parser
+    parser:
+      command: node
+      script: scripts/parsers/korea-job-board.mjs
+      args: ["--source", "recruiter", "--url", "https://oci.recruiter.co.kr", "--max", "80"]
+      format: jobs-json-v1
+      timeout_ms: 120000
+      max_buffer_bytes: 4000000
     scan_query: 'site:oci.recruiter.co.kr ("전기" OR "전자" OR "설비" OR "화학" OR "플랜트") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://oci.recruiter.co.kr
     enabled: true
   - name: S-OIL Careers
-    scan_method: websearch
+    scan_method: local_parser
+    parser:
+      command: node
+      script: scripts/parsers/korea-job-board.mjs
+      args: ["--source", "recruiter", "--url", "https://s-oil.recruiter.co.kr", "--max", "80"]
+      format: jobs-json-v1
+      timeout_ms: 120000
+      max_buffer_bytes: 4000000
     scan_query: 'site:s-oil.recruiter.co.kr ("전기" OR "전자" OR "설비" OR "계장" OR "플랜트") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://s-oil.recruiter.co.kr
     enabled: true
   - name: GS Energy Careers
-    scan_method: websearch
+    scan_method: local_parser
+    parser:
+      command: node
+      script: scripts/parsers/korea-job-board.mjs
+      args: ["--source", "recruiter", "--url", "https://gsenergy.recruiter.co.kr", "--max", "80"]
+      format: jobs-json-v1
+      timeout_ms: 120000
+      max_buffer_bytes: 4000000
     scan_query: 'site:gsenergy.recruiter.co.kr ("전기" OR "전력" OR "에너지" OR "설비" OR "배터리") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://gsenergy.recruiter.co.kr
     enabled: true
   - name: SK Siltron Careers
-    scan_method: websearch
+    scan_method: local_parser
+    parser:
+      command: node
+      script: scripts/parsers/korea-job-board.mjs
+      args: ["--source", "recruiter", "--url", "https://sksiltron.recruiter.co.kr", "--max", "80"]
+      format: jobs-json-v1
+      timeout_ms: 120000
+      max_buffer_bytes: 4000000
     scan_query: 'site:sksiltron.recruiter.co.kr ("전기" OR "전자" OR "반도체" OR "웨이퍼" OR "설비") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://sksiltron.recruiter.co.kr
     enabled: true
   - name: Celltrion Careers
-    scan_method: websearch
+    scan_method: local_parser
+    parser:
+      command: node
+      script: scripts/parsers/korea-job-board.mjs
+      args: ["--source", "recruiter", "--url", "https://celltrion.recruiter.co.kr", "--max", "80"]
+      format: jobs-json-v1
+      timeout_ms: 120000
+      max_buffer_bytes: 4000000
     scan_query: 'site:celltrion.recruiter.co.kr ("전기" OR "전자" OR "설비" OR "자동화" OR "계장") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://celltrion.recruiter.co.kr
     enabled: true
   - name: Daewoong Careers
-    scan_method: websearch
+    scan_method: local_parser
+    parser:
+      command: node
+      script: scripts/parsers/korea-job-board.mjs
+      args: ["--source", "recruiter", "--url", "https://daewoong.recruiter.co.kr", "--max", "80"]
+      format: jobs-json-v1
+      timeout_ms: 120000
+      max_buffer_bytes: 4000000
     scan_query: 'site:daewoong.recruiter.co.kr ("전기" OR "전자" OR "설비" OR "자동화" OR "생산기술") (채용 OR 모집 OR 신입 OR 인턴 OR 경력)'
     careers_url: https://daewoong.recruiter.co.kr
     enabled: true

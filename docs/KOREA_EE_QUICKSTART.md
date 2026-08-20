@@ -14,9 +14,12 @@ Korean electrical/electronic-engineering student or graduate.
   Hyundai Motor Group/Mobis/AutoEver, Hanwha, POSCO, HD Hyundai, LS, Doosan,
   Lotte, CJ, Hyosung, Kolon, KT/NAVER/Kakao/Coupang infrastructure, DB/LX/Wonik,
   PSK, L&F, Hana Micron, EcoPro, HL, LIG Nex1, KAI, KCC, OCI, S-OIL, GS Energy,
-  and related EE-heavy pages. Company career pages that do not expose a stable
-  public feed still appear as `Agent/WebSearch handoff` items with site-specific
+  and related EE-heavy pages. Midas/recruiter.co.kr official pages with a public
+  JSON list are scanned directly by the Korea parser; the remaining company
+  career pages still appear as `Agent/WebSearch handoff` items with site-specific
   EE queries.
+- Ranking prioritizes 신입/인턴/채용연계형/Junior/Entry/경력무관 postings and down-ranks
+  hard 경력직, 영업/구매/공무, 단순 조립/생산직, 사무/행정, 조교/교수 matches.
 - Evaluation is stricter: every posting is judged by **electrical-engineering
   major fit** and **broad student/graduate eligibility** before the normal career-ops
   score is finalized.
