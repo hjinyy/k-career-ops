@@ -14,34 +14,34 @@ candidate:
 
 target_roles:
   primary:
-    - "전기전자 신입"
-    - "전기공학 인턴"
+    - "전기전자 재학생/졸업생"
+    - "전기공학 인턴/신입/경력"
     - "전력/전기설비 엔지니어"
     - "반도체/배터리/전장 엔지니어"
     - "제어/임베디드/회로 엔지니어"
   archetypes:
     - name: "전력·전기설비 엔지니어"
-      level: "인턴/신입/Junior"
+      level: "재학생/졸업생/인턴/신입/경력/계약직"
       fit: "primary"
     - name: "반도체·장비·공정 엔지니어"
-      level: "인턴/신입/Junior"
+      level: "재학생/졸업생/인턴/신입/경력/계약직"
       fit: "primary"
     - name: "배터리·전장·모터 제어 엔지니어"
-      level: "인턴/신입/Junior"
+      level: "재학생/졸업생/인턴/신입/경력/계약직"
       fit: "primary"
     - name: "제어·임베디드·회로 설계 엔지니어"
-      level: "인턴/신입/Junior"
+      level: "재학생/졸업생/인턴/신입/경력/계약직"
       fit: "secondary"
     - name: "플랜트·건설 전기 엔지니어"
-      level: "인턴/신입/Junior"
+      level: "재학생/졸업생/인턴/신입/경력/계약직"
       fit: "secondary"
     - name: "통신·신호처리·계측 엔지니어"
-      level: "인턴/신입/Junior"
+      level: "재학생/졸업생/인턴/신입/경력/계약직"
       fit: "adjacent"
 
 narrative:
-  headline: "한양대학교 전기/전자공학 계열 4학년 1학기 학생"
-  exit_story: "전기공학 기반 직무에서 인턴, 신입, 계약직을 폭넓게 검토하되 지원자격 적합성을 먼저 확인한다."
+  headline: "전기/전자공학 계열 재학생 또는 졸업생 대상 커리어 탐색"
+  exit_story: "전기공학 기반 직무에서 인턴, 신입, 경력, 정규직, 계약직을 폭넓게 검토하되 전공 적합성과 지원자격을 확인한다."
   superpowers:
     - "전기전자공학 기초"
     - "전력·제어·회로·반도체·배터리·전장 직무 적합성 판단"
@@ -69,14 +69,14 @@ language:
 # evaluation deserves premium reasoning.
 spend_tier: standard
 
-# Keep the scan broad; the EE suitability and 4-1 eligibility gates happen in
-# evaluation, not by over-filtering at discovery time.
+# Keep the scan broad; EE suitability and broad candidate eligibility checks happen
+# in evaluation, not by over-filtering at discovery time.
 auto_pdf_score_threshold: 4.0
 
 culture_screen:
   require:
     - "전기공학 또는 전기전자 전공이 지원 가능한 직무"
-    - "4학년 1학기 재학생, 인턴, 신입, 계약직 중 하나로 지원 가능성이 명확하거나 확인 가능"
+    - "전기공학과 재학생 또는 졸업생이 지원 가능한 직무"
   deprioritize_if_absent: false
 
 cv:

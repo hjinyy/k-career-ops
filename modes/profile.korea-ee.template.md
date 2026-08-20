@@ -8,7 +8,7 @@ AI/LLMOps archetypes without changing the upstream system layer.
 ## Your Target Roles
 
 This lane targets Korean job postings where an electrical/electronic engineering
-student can plausibly apply. Discovery should be intentionally broad: internship,
+student or graduate can plausibly apply. Discovery should be intentionally broad: internship,
 new-grad, regular full-time, contract, 채용연계형 인턴, 산학장학생, 연구보조, 현장실습,
 and Junior/Entry roles are all allowed into the pipeline.
 
@@ -37,16 +37,18 @@ Classify the posting's major fit as one of:
 
 ⛔는 전체 점수를 낮추고 "지원 비추천"으로 보내되, JD가 정말 매력적이면 왜 예외인지 설명한다.
 
-### 2) 4학년 1학기 eligibility gate
+### 2) Candidate eligibility gate
 
-Candidate context: Hjin is a Hanyang University electrical/electronic engineering
-student in 4학년 1학기. Do not assume graduation eligibility unless the JD supports it.
+Candidate scope: evaluate postings for electrical/electronic engineering students,
+graduates, and graduation candidates broadly. Do **not** use a single-year or
+single-semester filter. A posting can be relevant if it accepts 재학생, 졸업예정자,
+기졸업자, 신입, 경력, 인턴, 정규직, 계약직, 채용연계형, or similar categories.
 
 Classify eligibility as:
 
-- ✅ **4-1 지원 가능**: 재학생 가능, 인턴 가능, 학년 제한 없음, 또는 졸업예정 조건이 현재 상태와 모순되지 않음.
-- ⚠️ **확인 필요**: 졸업예정자/기졸업자/즉시 입사 가능자 등 해석이 필요한 조건.
-- ⛔ **4-1 명확히 불가**: 기졸업자만, 특정 졸업월 이전 졸업예정자만, full-time 즉시 근무 등 현재 4-1과 명확히 충돌.
+- ✅ **지원 가능**: 전기/전자공학 재학생, 졸업예정자, 졸업생, 신입, 경력, 인턴, 정규직, 계약직 중 하나 이상이 명확히 가능.
+- ⚠️ **확인 필요**: 전공/학력/졸업 여부/경력 연차/근무 가능일 조건이 애매하거나 본문만으로 판단이 어려움.
+- ⛔ **명확히 불가**: 전기공학과 재학생·졸업생 모두와 맞지 않는 전공/자격 제한, 과도한 필수 경력, 면허/자격/지역 조건 등 명확한 blocker가 있음.
 
 For ⚠️, include the exact question Hjin should ask HR/recruiter. For ⛔, do not
 spend time on CV tailoring unless Hjin explicitly overrides.
@@ -55,7 +57,7 @@ spend time on CV tailoring unless Hjin explicitly overrides.
 
 Do **not** filter out roles only because they are intern, 신입, 정규직, 계약직,
 채용연계형, 산학장학생, 연구보조, 현장실습, or Junior/Entry. The evaluation should
-score them by fit and eligibility, not by employment type.
+score them by EE fit, candidate scope, and requirement match — not by employment type alone.
 
 ### 4) Korean-market output
 
@@ -63,7 +65,7 @@ Reports, tracker notes, and action summaries should be in Korean polite speech.
 Always include:
 
 - `전공 적합성:` ✅ / ⚠️ / ⛔ plus quoted evidence
-- `4-1 지원자격:` ✅ / ⚠️ / ⛔ plus quoted evidence
+- `지원자격:` ✅ / ⚠️ / ⛔ plus quoted evidence
 - `고용형태:` 인턴/신입/정규직/계약직/채용연계형/산학장학생/기타/미상
 - `오늘 액션:` 지원 / 저장 / HR 확인 / 제외
 

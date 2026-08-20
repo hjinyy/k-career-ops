@@ -2,13 +2,13 @@
 
 ## Summary
 
-한양대학교 전기/전자공학 계열 4학년 1학기 학생입니다. 전기공학 기반 인턴, 신입,
-정규직, 계약직, 채용연계형 공고를 폭넓게 검토하고 있습니다.
+전기/전자공학 계열 재학생 또는 졸업생 프로필입니다. 전기공학 기반 인턴, 신입,
+경력, 정규직, 계약직, 채용연계형 공고를 폭넓게 검토하고 있습니다.
 
 ## Education
 
-- Hanyang University — Electrical/Electronic Engineering related major
-  - Current standing: 4학년 1학기
+- Electrical/Electronic Engineering related major
+  - Candidate scope: 재학생, 졸업예정자, 졸업생 모두 포괄
 
 ## Target Areas
 

@@ -18,8 +18,8 @@
 Every evaluation must include these four lines near the top of Block A or the TL;DR:
 
 - `전공 적합성:` ✅ 명확 / ⚠️ 가능성 있음 / ⛔ 부적합, with quoted evidence.
-- `4-1 지원자격:` ✅ 가능 / ⚠️ 확인 필요 / ⛔ 불가, with quoted evidence.
+- `지원자격:` ✅ 가능 / ⚠️ 확인 필요 / ⛔ 불가, with quoted evidence.
 - `고용형태:` 인턴 / 신입 / 정규직 / 계약직 / 채용연계형 / 산학장학생 / 기타 / 미상.
 - `오늘 액션:` 지원 / 저장 / HR 확인 / 제외.
 
-If the 4-1 eligibility is ambiguous, draft one concise HR question instead of guessing.
+If eligibility is ambiguous, draft one concise HR question instead of guessing. Do not apply a single-year/single-semester filter; cover electrical-engineering students and graduates broadly.

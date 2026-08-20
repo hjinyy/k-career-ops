@@ -1,15 +1,15 @@
 # Korea EE Career-Ops Quickstart
 
 This fork can run the original career-ops pipeline while evaluating postings for a
-Korean electrical/electronic-engineering student.
+Korean electrical/electronic-engineering student or graduate.
 
 ## What changes
 
 - Discovery is broad: internship, new-grad, full-time, contract, 채용연계형 인턴,
   산학장학생, 연구보조, 현장실습, Junior/Entry are all allowed into the pipeline.
 - Evaluation is stricter: every posting is judged by **electrical-engineering
-  major fit** and **4학년 1학기 eligibility** before the normal career-ops score is
-  finalized.
+  major fit** and **broad student/graduate eligibility** before the normal career-ops
+  score is finalized.
 - Output is Korean-first and asks HR clarification questions when eligibility is
   ambiguous instead of guessing.
 
@@ -57,7 +57,7 @@ those queries with your AI/web-search workflow, add confirmed posting URLs to
 Each report should surface:
 
 - `전공 적합성:` ✅ 명확 / ⚠️ 가능성 있음 / ⛔ 부적합
-- `4-1 지원자격:` ✅ 가능 / ⚠️ 확인 필요 / ⛔ 불가
+- `지원자격:` ✅ 가능 / ⚠️ 확인 필요 / ⛔ 불가
 - `고용형태:` 인턴 / 신입 / 정규직 / 계약직 / 채용연계형 / 산학장학생 / 기타 / 미상
 - `오늘 액션:` 지원 / 저장 / HR 확인 / 제외
 
